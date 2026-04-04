@@ -15,6 +15,7 @@ function App() {
           <Route path="/CrearCuenta" component={CrearCuenta}/>
           <Route path="/Favoritos" component={Favoritos}/>
           <Route path="/search/:busqueda" component={SearchResults}/>
+          <Route path="/detalle" component={Detalle}/>
         </Switch>
       <Footer />
     </React.Fragment>

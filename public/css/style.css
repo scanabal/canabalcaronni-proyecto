@@ -1,0 +1,8 @@
+/*cardPeli*/
+.mostrar{
+    display: block;
+}
+
+.no-mostrar{
+    display:none;
+}

@@ -50,14 +50,7 @@ class Home extends Component{
             {this.state.populares.map((peli, idx) => 
             <CardPeli 
                 key={idx}
-                pelicula={peli}/>)}
-
-        {/*imagen en CardRM*/}
-        {/*boton ver descripcion en CardRM*/}
-        {/*descripcion en CardRM*/}
-        {/*boton ir a detalle en CardRM*/}
-        {/*boton agregar/quitar de favoritos en CardRM*/}
-            
+                pelicula={peli}/>)}            
 
             <h2>Peliculas en cartel</h2>
             <Link to="/cartel">Ver todas</Link>
