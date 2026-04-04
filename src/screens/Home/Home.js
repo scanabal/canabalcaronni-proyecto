@@ -44,7 +44,7 @@ class Home extends Component{
 
         {/* 2 secciones*/}
 
-            <h2>Peliculas poulares</h2>
+            <h2>Peliculas mas populares</h2>
             <Link to="/populares">Ver todas</Link>
 
             {this.state.populares.map((peli, idx) => 
