@@ -6,3 +6,16 @@
 .no-mostrar{
     display:none;
 }
+
+.logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    
+}
+.logo img{
+    width: 200px;
+    height: 100px;
+    border-radius: 12px;  /* para redondear el borde */
+}
