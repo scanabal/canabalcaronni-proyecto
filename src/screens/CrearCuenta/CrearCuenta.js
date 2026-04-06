@@ -19,7 +19,7 @@ class CrearCuenta extends Component {
       password: this.state.password
     })
   
-  localStorage.setItem("savedUsers", JSON.stringify(usuarios));
+  localStorage.setItem("savedUsers", JSON.stringify(users));
 
     // Esto me deja dirigir al login
     this.props.history.push("/login");
