@@ -12,12 +12,21 @@ class CrearCuenta extends Component {
     }
      evitarSubmit(e){
         e.preventDefault();
-        this.props.history.push("/search/"+this.state.valor)
-    }
+    
+    let users = JSON.parse(localStorage.getItem("savedUsers"))
+    users.push({
+      email:this.state.email,
+      password: this.state.password
+    })
+  
+  localStorage.setItem("savedUsers", JSON.stringify(usuarios));
 
+    // Esto me deja dirigir al login
+    this.props.history.push("/login");
+  }
     controlarCambios(e){
         this.setState({
-            valor: e.target.value});
+            [e.target.name]: e.target.value});
     }
 
     render(){
@@ -25,20 +34,17 @@ class CrearCuenta extends Component {
             <React.Fragment>
               <div className="form-input">
                 <h2>Crear Cuenta</h2>
-                <form onSubmit={(evento)=> this.evitarSubmit(evento)}/>
+                <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
                     <label>Email:</label>
                     <input type="email" name="email" value={this.state.email} onChange={(evento)=> this.controlarCambios(evento)}/>
                 
-              </div>
-           
-            <div className="form-input">
+            
               <label>Password:</label>
               <input type="password" name="password" value={this.state.password} onChange={(evento)=> this.controlarCambios(evento)}/>
-        
-        
-            </div>
-            <button type="submit">Registrarme</button>
-            
+           
+               <button type="submit">Registrarme</button>
+                </form>
+                </div>
             </React.Fragment>
             
 
