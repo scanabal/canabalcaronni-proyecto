@@ -23,14 +23,14 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        fetch("popularesAPI")
+        fetch("https://api.themoviedb.org/3/movie/popular?api_key=57f7a2a82d57f08ae3dba76c4340b8c0")
             .then(response => response.json())
-            .then(data => this.setState({populares: data}))
+            .then(data => this.setState({populares: data.results}))
             .catch(error => console.log(error))
 
-        fetch("cartelAPI")
+        fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=57f7a2a82d57f08ae3dba76c4340b8c0")
             .then(response => response.json())
-            .then(data => this.setState({cartel: data}))
+            .then(data => this.setState({cartel: data.results}))
             .catch(error => console.log(error))
     }
 
@@ -41,8 +41,6 @@ class Home extends Component{
                 <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
                     <input type="text" placeholder="Buscar..." onChange={(evento)=> this.controlarCambios(evento)} value={this.state.valor}/>
                 </form>
-
-        {/* 2 secciones*/}
 
             <h2>Peliculas mas populares</h2>
             <Link to="/populares">Ver todas</Link>

@@ -12,22 +12,22 @@ class SearchResults extends Component{
         const busqueda = this.props.match.params.busqueda;
 
         fetch("API${busqueda}")
+        fetch(`https://api.themoviedb.org/3/search/movie?api_key=57f7a2a82d57f08ae3dba76c4340b8c0&query=${busqueda}`)
+
         .then(response => response.json())
-        .then(data => this.setState({resultados: data}))
-        //cambiarlo con api, mas especifico
+        .then(data => this.setState({resultados: data.results}))
         .catch(error => console.log(error))
     }
 
     render(){
         return(
-            <React.Fragment>
+            <div>
             <h1>Resultados de busqueda</h1>
             {this.state.resultados.map((pelicula, idx) => 
             <div key={idx}>
-                <p>Titulo de pelicula buscada</p>
-            //sacar el texto fijo
+                <p>{pelicula.title}</p>
             </div>)}
-            </React.Fragment>
+            </div>
         )
     }
 }

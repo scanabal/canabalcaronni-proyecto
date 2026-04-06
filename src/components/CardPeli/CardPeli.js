@@ -27,23 +27,19 @@ class CardPeli extends Component {
         return(
             <React.Fragment>
 
-                {/*img (cambiar img y titulo*/}
-                <img src={this.props.pelicula.imagen} alt={this.props.pelicula.titulo} />
+                {/*img (cambiar img*/}
+                <img src={this.props.pelicula.poster_path} alt={this.props.pelicula.title} />
 
-                {/*titulo (cambiar titulo*/}
-                <h2>{this.props.pelicula.titulo}</h2> 
+                <h2>{this.props.pelicula.title}</h2> 
 
-                {/*boton ver descripcion*/}
                 <div className="card-buttons">
                     <button onClick={() => this.boton()}>{this.state.ver}</button>
                 </div>
  
-                {/*descripcion (cambiar descripcion)*/}
                 <div className={this.state.clase}>
-                    <p>{this.props.pelicula.descripcion}</p>
+                    <p>{this.props.pelicula.overview}</p>
                 </div>
                 
-                {/*boton ir a detalle (cambiar id)*/}
                 <div className="card-buttons">
 		            <Link to={"/detalle/" + this.props.pelicula.id}>
                         <button>Ir a detalle</button>
