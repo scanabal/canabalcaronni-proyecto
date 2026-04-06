@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component{
     constructor(props){
@@ -11,25 +12,23 @@ class Login extends Component{
     }
 
     controlarCambios(event){
-        if(event.target.name === "email"){
-            this.setState({ email: event.target.value });
-        } else if(event.target.name === "password"){
-            this.setState({ password: event.target.value });
-        }
-    }
+        event.target.name === "email"
+        ? this.setState({email: event.target.value})
+        : this.setState({ password: event.target.value});}
 
     evitarSubmit(e){
         e.preventDefault();
     
-        let usuarios = JSON.parse(localStorage.getItem("usuariosGuardados")) || [];
-        for(let i = 0; i<usuarios.length; i++){
-            if( usuarios[i].email === this.state.email && usuarios[i].password === this.state.password)
-            {this.props.history.push("/home");
-                return;
-            }
-        }
-        this.setState({ error: "Credenciales incorrectas" });
-    }
+        let usuarios = JSON.parse(localStorage.getItem("savedUsers")) || [];
+        
+        let usuarioEncontrado = usuarios.find(usuario => 
+            usuario.email === this.state.email && usuario.password === this.state.password)
+
+// tal que usuario exista y la contraseña coincida, crear una cookie de sesión
+
+        usuarioEncontrado
+            ? this.props.history.push("/home")
+            : this.setState({error: "Credenciales incorrectas"})}
 
     render(){
         let mensajeError = "";
@@ -52,4 +51,4 @@ class Login extends Component{
     }
 }
 
-export default Login;
+export default withRouter(Login);

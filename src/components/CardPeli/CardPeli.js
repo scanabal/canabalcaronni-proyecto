@@ -10,25 +10,23 @@ class CardPeli extends Component {
         }
     }
 
-    boton(){
-        if(this.state.ver === "Ver descripcion"){
-            this.setState({
-                ver: "Ocultar descripcion",
-                clase: "mostrar"
-            })
+    boton = () => {
+        let resultado = this.state.ver === "Ver descripcion"
+        ? {ver: "Ocultar descripcion",
+            clase: "mostrar"
         }
-        else{this.setState({
-            ver: "Ver descripcion",
-            clase:"no-mostrar"
-        })}
+        :{ver: "Ver descripcion",
+            clase: "no-mostrar"
+        };
+
+        this.setState(resultado)
     }
 
     render(){
         return(
             <React.Fragment>
 
-                {/*img (cambiar img*/}
-                <img src= {"url${this.props.pelicula.poster_path}"} alt={this.props.pelicula.title} />
+                <img src= {`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`} alt={this.props.pelicula.title} />
 
                 <h2>{this.props.pelicula.title}</h2> 
 

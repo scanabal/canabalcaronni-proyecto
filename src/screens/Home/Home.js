@@ -47,7 +47,7 @@ class Home extends Component{
 
             {this.state.populares.map((peli, idx) => 
             <CardPeli 
-                key={idx}
+                key={peli.id}
                 pelicula={peli}/>)}            
 
             <h2>Peliculas en cartel</h2>
@@ -55,7 +55,7 @@ class Home extends Component{
 
             {this.state.cartel.map((peli, idx) => 
             <CardPeli 
-                key={idx}
+                key={peli.id}
                 pelicula={peli}/>)}
 
         </React.Fragment>

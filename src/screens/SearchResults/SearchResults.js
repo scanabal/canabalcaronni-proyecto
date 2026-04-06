@@ -1,5 +1,5 @@
 import {Component} from "react"
-
+import { withRouter, Link } from "react-router-dom";
 
 
 class SearchResults extends Component{
@@ -24,7 +24,7 @@ class SearchResults extends Component{
             <div>
             <h1>Resultados de busqueda</h1>
             {this.state.resultados.map((pelicula, idx) => 
-            <div key={idx}>
+            <div key={pelicula.id}>
                 <p>{pelicula.title}</p>
             </div>)}
             </div>
@@ -32,4 +32,4 @@ class SearchResults extends Component{
     }
 }
 
-export default SearchResults;
+export default withRouter(SearchResults);
