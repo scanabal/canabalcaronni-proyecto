@@ -11,12 +11,10 @@ class Login extends Component{
     }
 
     controlarCambios(event){
-        let valor = event.target.value;
-
         if(event.target.name === "email"){
-            this.setState({ email: valor });
+            this.setState({ email: event.target.value });
         } else if(event.target.name === "password"){
-            this.setState({ password: valor });
+            this.setState({ password: event.target.value });
         }
     }
 
