@@ -45,19 +45,22 @@ class Home extends Component{
             <h2>Peliculas mas populares</h2>
             <Link to="/populares">Ver todas</Link>
 
+            <div className="row cards">
             {this.state.populares.map((peli, idx) => 
             <CardPeli 
                 key={peli.id}
-                pelicula={peli}/>)}            
+                pelicula={peli}/>)}  
+                </div>          
 
             <h2>Peliculas en cartel</h2>
             <Link to="/cartel">Ver todas</Link>
 
+            <div className="row cards">
             {this.state.cartel.map((peli, idx) => 
             <CardPeli 
                 key={peli.id}
                 pelicula={peli}/>)}
-
+</div>
         </React.Fragment>
         )
     }

@@ -25,24 +25,23 @@ class CardPeli extends Component {
     render(){
         return(
             <React.Fragment>
+                <article className="single-card-movie">
 
-                <img src= {`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`} alt={this.props.pelicula.title} />
+                <img src= {`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`} alt={this.props.pelicula.title} className= "card-img-top"/>
 
-                <h2>{this.props.pelicula.title}</h2> 
-
-                <div className="card-buttons">
-                    <button onClick={() => this.boton()}>{this.state.ver}</button>
-                </div>
- 
-                <div className={this.state.clase}>
-                    <p>{this.props.pelicula.overview}</p>
-                </div>
+                <div className= "cardBody">
+                <h2 className= "class-title"> {this.props.pelicula.title}</h2> 
+                <p className="card-text">
+                    {this.props.pelicula.overview}
+                </p>
                 
-                <div className="card-buttons">
+                    <button className="btn alert-primary" onClick={() => this.boton()}>{this.state.ver}</button>
+
 		            <Link to={"/detalle/" + this.props.pelicula.id}>
                         <button>Ir a detalle</button>
                     </Link>
                 </div>
+                </article>
 
             {/*boton agregar/quitar de favoritos en CardRM*/}
 
