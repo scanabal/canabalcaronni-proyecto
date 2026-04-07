@@ -38,25 +38,29 @@ class Home extends Component{
         return(
             <React.Fragment>
 
-                <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
+                <form className="search-form" onSubmit={(evento)=> this.evitarSubmit(evento)}>
                     <input type="text" placeholder="Buscar..." onChange={(evento)=> this.controlarCambios(evento)} value={this.state.valor}/>
                 </form>
 
             <h2>Peliculas mas populares</h2>
             <Link to="/populares">Ver todas</Link>
 
+            <div className="cards">
             {this.state.populares.map((peli, idx) => 
             <CardPeli 
                 key={peli.id}
-                pelicula={peli}/>)}            
+                pelicula={peli}/>)} 
+            </div>           
 
             <h2>Peliculas en cartel</h2>
             <Link to="/cartel">Ver todas</Link>
 
-            {this.state.cartel.map((peli, idx) => 
+            <div className="cards">
+            {this.state.cartel.map((peli, idx) => (
             <CardPeli 
                 key={peli.id}
-                pelicula={peli}/>)}
+                pelicula={peli}/>))}
+            </div>
 
         </React.Fragment>
         )
