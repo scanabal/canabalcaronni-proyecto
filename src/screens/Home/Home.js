@@ -47,19 +47,22 @@ class Home extends Component{
 
             <div className="row cards">
             
-            {this.state.populares.map((peli, idx) => 
+            {this.state.populares
+                .filter((peli, idx) => idx < 4)
+                .map((peli) => 
             <CardPeli 
                 key={peli.id}
                 pelicula={peli}/>)} 
             </div>           
                         
-
-            
+ 
             <h2>Peliculas en cartel</h2>
             <Link to="/cartel">Ver todas</Link>
 
             <div className="row cards"> 
-            {this.state.cartel.map((peli, idx) => (
+            {this.state.cartel
+                .filter((peli, idx) => idx < 4)
+                .map((peli) => (
             <CardPeli 
                 key={peli.id}
                 pelicula={peli}/>))}
