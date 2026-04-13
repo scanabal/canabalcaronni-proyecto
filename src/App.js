@@ -6,6 +6,7 @@ import CrearCuenta from "./screens/CrearCuenta/CrearCuenta";
 import Footer from "./components/Footer/Footer"
 import { Switch, Route } from "react-router-dom";
 import SearchResults from "./screens/SearchResults/SearchResults";
+import NotFound from "./screens/NotFound/NotFound";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           {/* <Route path="/Favoritos" component={Favoritos}/> */}
           <Route path="/search/:busqueda" component={SearchResults}/>
           {/* <Route path="/detalle" component={Detalle}/> */}
+          <Route path="*" component={NotFound}/>
         </Switch>
       <Footer />
     </React.Fragment>
