@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies()
 
 class Login extends Component{
     constructor(props){
@@ -24,10 +26,11 @@ class Login extends Component{
         let usuarioEncontrado = usuarios.find(usuario => 
             usuario.email === this.state.email && usuario.password === this.state.password)
 
+
 // tal que usuario exista y la contraseña coincida, crear una cookie de sesión
 
         usuarioEncontrado
-            ? this.props.history.push("/home")
+            ? (cookies.set("session", this.state.email, {path: "/"}) this.props.history.push("/"))
             : this.setState({error: "Credenciales incorrectas"})}
 
     render(){
