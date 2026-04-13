@@ -7,6 +7,7 @@ class CrearCuenta extends Component {
         this.state = { 
           email: "",
           password: "",  
+          error: ""
         };
 
     }
@@ -14,15 +15,23 @@ class CrearCuenta extends Component {
         e.preventDefault();
     
     let users = JSON.parse(localStorage.getItem("savedUsers"))
-    users.push({
+    let existe = users.find(user => user.email === this.state.email);
+
+    existe
+    ? this.setState({error:"Este mail ya esta en uso"})
+    :this.state.password.length <6
+      ? this.setState({error:"Tu password debe tener al menos 6 caracteres"})
+      : (users.push({
       email:this.state.email,
       password: this.state.password
-    })
-  
-  localStorage.setItem("savedUsers", JSON.stringify(users));
+    }),
+       localStorage.setItem("savedUsers", JSON.stringify(users)),
     // Esto me deja dirigir al login
-    this.props.history.push("/login");
-  }
+    this.props.history.push("/login")
+  
+); 
+     }
+     
     controlarCambios(e){
         this.setState({
             [e.target.name]: e.target.value});
@@ -41,8 +50,10 @@ class CrearCuenta extends Component {
               <label>Password:</label>
               <input type="password" name="password" value={this.state.password} onChange={(evento)=> this.controlarCambios(evento)}/>
            
-               <button type="submit">Registrarme</button>
+               
                 </form>
+                <button type="submit">Registrarme</button>
+                {this.state.error !== "" && <p>{this.state.error}</p>}
                 </div>
             </React.Fragment>
             

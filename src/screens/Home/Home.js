@@ -46,21 +46,25 @@ class Home extends Component{
             <Link to="/populares">Ver todas</Link>
 
             <div className="row cards">
+            
             {this.state.populares.map((peli, idx) => 
             <CardPeli 
                 key={peli.id}
-                pelicula={peli}/>)}  
-                </div>          
+                pelicula={peli}/>)} 
+            </div>           
+                        
 
+            
             <h2>Peliculas en cartel</h2>
             <Link to="/cartel">Ver todas</Link>
 
-            <div className="row cards">
-            {this.state.cartel.map((peli, idx) => 
+            <div className="row cards"> 
+            {this.state.cartel.map((peli, idx) => (
             <CardPeli 
                 key={peli.id}
-                pelicula={peli}/>)}
-</div>
+                pelicula={peli}/>))}
+                </div>
+
         </React.Fragment>
         )
     }

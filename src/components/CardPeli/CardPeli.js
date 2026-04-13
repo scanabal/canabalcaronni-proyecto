@@ -24,10 +24,15 @@ class CardPeli extends Component {
 
     render(){
         return(
+            
             <React.Fragment>
                 <article className="single-card-movie">
 
-                <img src= {`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`} alt={this.props.pelicula.title} className= "card-img-top"/>
+                <img src= {`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`} alt={this.props.pelicula.title} />
+
+                <div className="cardBody">
+
+                <h2>{this.props.pelicula.title}</h2> 
 
                 <div className= "cardBody">
                 <h2 className= "class-title"> {this.props.pelicula.title}</h2> 
@@ -41,11 +46,13 @@ class CardPeli extends Component {
                         <button>Ir a detalle</button>
                     </Link>
                 </div>
-                </article>
+                </div>
+                 </article>
+                </React.Fragment>
 
-            {/*boton agregar/quitar de favoritos en CardRM*/}
+           
 
-            </React.Fragment>
+           
         )
     }
 }

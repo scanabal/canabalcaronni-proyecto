@@ -30,8 +30,11 @@ class Login extends Component{
 // tal que usuario exista y la contraseña coincida, crear una cookie de sesión
 
         usuarioEncontrado
-            ? (cookies.set("session", this.state.email, {path: "/"}) this.props.history.push("/"))
+            ? //(cookies.set("session", this.state.email, {path: "/"})
+             this.props.history.push("/")
             : this.setState({error: "Credenciales incorrectas"})}
+
+          
 
     render(){
         let mensajeError = "";
