@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import CardPeli from "../CardPeli/CardPeli";
 
-class Detalle extends Component{
+class DetalleTv extends Component{
     constructor(props) {
         super(props);
         this.state= {
@@ -25,4 +25,4 @@ let favoritos = JSON.parse(localStorage.getItem(key)) || [];
 
 
 
-export default Detalle;
+export default DetalleTv;
