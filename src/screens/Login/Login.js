@@ -21,19 +21,27 @@ class Login extends Component{
     evitarSubmit(e){
         e.preventDefault();
     
-        let usuarios = JSON.parse(localStorage.getItem("savedUsers")) || [];
-        
-        let usuarioEncontrado = usuarios.find(usuario => 
-            usuario.email === this.state.email && usuario.password === this.state.password)
+        let usuariosStorage = localStorage.getItem("savedUsers");
 
+        usuariosStorage === null
+            ? this.setState({error: "Las credenciales ingresadas son inválidas"})
+            : (() => {
+                let usuarios = JSON.parse(usuariosStorage);
 
-// tal que usuario exista y la contraseña coincida, crear una cookie de sesión
+                let usersFiltrado = usuarios.filter(
+                    usuario => usuario.email === this.state.email
+                );
 
-        usuarioEncontrado
-            ? //(cookies.set("session", this.state.email, {path: "/"})
-             this.props.history.push("/")
-            : this.setState({error: "Credenciales incorrectas"})}
-
+                usersFiltrado.length === 0
+                    ? this.setState({error: "El usuario ingresado no existe"})
+                    : usersFiltrado[0].password !== this.state.password
+                        ? this.setState({error: "Las credenciales ingresadas son invalidas"})
+                        : (() => {
+                            sessionStorage.setItem("usuarioEnSesion", JSON.stringify({sesionActiva: true}));
+                            cookies.set('auth-user', this.state.email);
+                            this.props.history.push("/");
+                        })();
+            })()}
           
 
     render(){
