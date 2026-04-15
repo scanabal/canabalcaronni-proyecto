@@ -10,6 +10,7 @@ import Footer from "./components/Footer/Footer"
 import { Switch, Route } from "react-router-dom";
 import SearchResults from "./screens/SearchResults/SearchResults";
 import NotFound from "./screens/NotFound/NotFound";
+import MiPerfil from "./screens/MiPerfil/MiPerfil";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
            <Route path="/search/:busqueda" component={SearchResults}/>
            <Route path="/detalle/:id" component={Detalle}/> 
           <Route path="*" component={NotFound}/>
+          <Route path="/MiPerfil" component={MiPerfil} />
         </Switch>
       <Footer />
     </React.Fragment>

@@ -35,9 +35,8 @@ class Login extends Component{
                 usersFiltrado.length === 0
                     ? this.setState({error: "El usuario ingresado no existe"})
                     : usersFiltrado[0].password !== this.state.password
-                        ? this.setState({error: "Las credenciales ingresadas son invalidas"})
+                        ? this.setState({error: "Las credenciales ingresadas son inválidas"})
                         : (() => {
-                            sessionStorage.setItem("usuarioEnSesion", JSON.stringify({sesionActiva: true}));
                             cookies.set('auth-user', this.state.email);
                             this.props.history.push("/");
                         })();
