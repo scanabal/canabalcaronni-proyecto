@@ -8,18 +8,30 @@ class Home extends Component{
         this.state = {
             valor: "",
             populares: [],
-            cartel: []
+            cartel: [],
+            tipo: ""
         }
     }
 
-    evitarSubmit(e){
-        e.preventDefault();
-        this.props.history.push("/search/"+this.state.valor)
+    tipoSerie(){
+        this.setState ({tipo: "tv"})
+    }
+
+    tipoPelicula(){
+        this.setState ({tipo: "movie"})
     }
 
     controlarCambios(e){
         this.setState({
             valor: e.target.value});
+    }
+
+    evitarSubmit(e){
+        e.preventDefault();
+
+        if(this.state.valor !== "" && this.state.tipo !== ""){
+            this.props.history.push("/search/" + this.state.tipo + "/" + this.state.valor)
+        }
     }
 
     componentDidMount(){
@@ -40,6 +52,8 @@ class Home extends Component{
 
                 <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
                     <input type="text" placeholder="Buscar..." onChange={(evento)=> this.controlarCambios(evento)} value={this.state.valor}/>
+                    <button type= "button" onClick={()=> this.tipoPelicula()}>Buscar peliculas</button> 
+                    <button type= "button" onClick={()=> this.tipoSerie()}>Buscar series</button> 
                 </form>
 
             <h2>Peliculas mas populares</h2>
