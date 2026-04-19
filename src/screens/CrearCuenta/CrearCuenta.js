@@ -49,10 +49,11 @@ class CrearCuenta extends Component {
             
               <label>Password:</label>
               <input type="password" name="password" value={this.state.password} onChange={(evento)=> this.controlarCambios(evento)}/>
+              <button type="submit">Registrarme</button>
            
                
                 </form>
-                <button type="submit">Registrarme</button>
+                
                 {this.state.error !== "" && <p>{this.state.error}</p>}
                 </div>
             </React.Fragment>
