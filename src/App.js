@@ -17,7 +17,6 @@ function App() {
     <React.Fragment>
       <Header />
       <Nav/>
-      <Home/>
         <Switch>
           <Route path="/" exact={true}component={Home}/>
           <Route path="/Login" component={Login}/>

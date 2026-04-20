@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import { withRouter, Link } from "react-router-dom";
 
 class CrearCuenta extends Component {
     constructor(props){
@@ -15,8 +14,9 @@ class CrearCuenta extends Component {
         e.preventDefault();
     
     let users = JSON.parse(localStorage.getItem("savedUsers"))
-    let existe = users.find(user => user.email === this.state.email);
+    let existeUser=
 
+    if(existeUser)
     existe
     ? this.setState({error:"Este mail ya esta en uso"})
     :this.state.password.length <6
@@ -33,8 +33,12 @@ class CrearCuenta extends Component {
      }
      
     controlarCambios(e){
-        this.setState({
-            [e.target.name]: e.target.value});
+        this.setState({email: e.target.value})
+
+    }
+    controlarCambiosPassword(e){
+        this.setState({password: e.target.value})
+
     }
 
     render(){
@@ -48,7 +52,7 @@ class CrearCuenta extends Component {
                 
             
               <label>Password:</label>
-              <input type="password" name="password" value={this.state.password} onChange={(evento)=> this.controlarCambios(evento)}/>
+              <input type="password" name="password" value={this.state.password} onChange={(evento)=> this.controlarCambiosPassword(evento)}/>
               <button type="submit">Registrarme</button>
            
                

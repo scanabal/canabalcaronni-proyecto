@@ -30,12 +30,9 @@ class CardPeli extends Component {
 
                 <img src= {`https://image.tmdb.org/t/p/w342${this.props.pelicula.poster_path}`} alt={this.props.pelicula.title} />
 
-                <div className="cardBody">
+                <div className= "cardbody">
+                 <h2 className= "class-title">{this.props.pelicula.title}</h2>
 
-                <h2>{this.props.pelicula.title}</h2> 
-
-                <div className= "cardBody">
-                <h2 className= "class-title"> {this.props.pelicula.title}</h2> 
                 <p className="card-text">
                     {this.props.pelicula.overview}
                 </p>
@@ -46,7 +43,7 @@ class CardPeli extends Component {
                         <button>Ir a detalle</button>
                     </Link>
                 </div>
-                </div>
+                
                  </article>
                 </React.Fragment>
 
