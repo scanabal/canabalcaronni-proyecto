@@ -23,24 +23,23 @@ class Login extends Component{
     
         let usuariosStorage = localStorage.getItem("savedUsers");
 
-        usuariosStorage === null
-            ? this.setState({error: "Las credenciales ingresadas son inválidas"})
-            : (() => {
-                let usuarios = JSON.parse(usuariosStorage);
+        if (usuariosStorage === null){
+            this.setState({error: "Las credenciales ingresadas son inválidas"})}
+        else {
+            let usuarios = JSON.parse(usuariosStorage);
 
-                let usersFiltrado = usuarios.filter(
-                    usuario => usuario.email === this.state.email
-                );
+            let usersFiltrado = usuarios.filter(
+                usuario => usuario.email === this.state.email
+            );
 
-                usersFiltrado.length === 0
-                    ? this.setState({error: "El usuario ingresado no existe"})
-                    : usersFiltrado[0].password !== this.state.password
-                        ? this.setState({error: "Las credenciales ingresadas son inválidas"})
-                        : (() => {
-                            cookies.set('auth-user', this.state.email);
-                            this.props.history.push("/");
-                        })();
-            })()}
+            if (usersFiltrado.length === 0){
+                this.setState({error: "El usuario ingresado no existe"})}
+            else if (usersFiltrado[0].password !== this.state.password){
+                this.setState({error: "Las credenciales ingresadas son inválidas"})}
+            else {
+                cookies.set('auth-user', this.state.email);
+                this.props.history.push("/");}
+            }}
           
 
     render(){
@@ -50,15 +49,16 @@ class Login extends Component{
         }
 
         return(
-            <div>
+            <div className="container">
+                <div>
                 <h2>Login</h2>
-                <form onSubmit={(e) => this.evitarSubmit(e)}>
+                <form className="form" onSubmit={(e) => this.evitarSubmit(e)}>
                     <input type="email" name="email" value={this.state.email} onChange={(e) => this.controlarCambios(e)} placeholder="Email"/>
                     <input type="password" name="password" value={this.state.password} onChange={(e) => this.controlarCambios(e)} placeholder="Password"/>
                     <button type="submit">Ingresar</button>
                 </form>
                 {mensajeError}
-
+                </div>
             </div>
         )
     }

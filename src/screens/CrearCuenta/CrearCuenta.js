@@ -49,21 +49,21 @@ class CrearCuenta extends Component {
     render(){
         return(
             <React.Fragment>
-              <div className="form-input">
+              <div className="container">
+                <div>
                 <h2>Crear Cuenta</h2>
-                <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
-                    <label>Email:</label>
-                    <input type="email" name="email" value={this.state.email} onChange={(evento)=> this.controlarCambios(evento)}/>
+                <form className="form" onSubmit={(evento)=> this.evitarSubmit(evento)}>
+                    <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={(evento)=> this.controlarCambios(evento)}/>
                 
             
-              <label>Password:</label>
-              <input type="password" name="password" value={this.state.password} onChange={(evento)=> this.controlarCambiosPassword(evento)}/>
+              <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={(evento)=> this.controlarCambiosPassword(evento)}/>
               <button type="submit">Registrarme</button>
            
                
                 </form>
                 
                 {this.state.error !== "" && <p>{this.state.error}</p>}
+                </div>
                 </div>
             </React.Fragment>
             

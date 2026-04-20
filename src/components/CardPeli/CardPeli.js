@@ -33,15 +33,22 @@ class CardPeli extends Component {
                 <div className= "cardbody">
                  <h2 className= "class-title">{this.props.pelicula.title}</h2>
 
-                <p className="card-text">
-                    {this.props.pelicula.overview}
-                </p>
+                {this.state.clase === "mostrar"
+                    ? <p className="card-text">
+                        {this.props.pelicula.overview}
+                      </p>
+                    : null}
                 
                     <button className="btn alert-primary" onClick={() => this.boton()}>{this.state.ver}</button>
 
 		            <Link to={"/detalle/"+ this.props.pelicula.id}>  
                         <button>Ir a detalle</button>
                     </Link>
+
+                    {this.props.haySesion
+                        ? <button>Agregar/Quitar favoritos</button>
+                        : null
+                    }
                 </div>
                 
                  </article>

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { withRouter, Link } from "react-router-dom";
 import CardPeli from "../../components/CardPeli/CardPeli";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
 class Home extends Component{
     constructor(props){
@@ -9,7 +11,8 @@ class Home extends Component{
             valor: "",
             populares: [],
             cartel: [],
-            tipo: ""
+            tipo: "",
+            haySesion: false          
         }
     }
 
@@ -44,6 +47,10 @@ class Home extends Component{
             .then(response => response.json())
             .then(data => this.setState({cartel: data.results}))
             .catch(error => console.log(error))
+
+            if(cookies.get('auth-user')){
+                this.setState({haySesion: true})
+        }
     }
 
     render(){
@@ -66,7 +73,8 @@ class Home extends Component{
                 .map((peli) => 
             <CardPeli 
                 key={peli.id}
-                pelicula={peli}/>)} 
+                pelicula={peli}
+                haySesion={this.state.haySesion}/>)} 
             </div>           
                         
  
@@ -79,7 +87,8 @@ class Home extends Component{
                 .map((peli) => (
             <CardPeli 
                 key={peli.id}
-                pelicula={peli}/>))}
+                pelicula={peli}
+                haySesion={this.state.haySesion}/>))}
                 </div>
 
         </React.Fragment>
