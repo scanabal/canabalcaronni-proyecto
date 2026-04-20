@@ -15,7 +15,7 @@ import MiPerfil from "./screens/MiPerfil/MiPerfil";
 function App() {
   return (
     <React.Fragment>
-      <Header />
+      <Header/>
       <Nav/>
         <Switch>
           <Route path="/" exact={true}component={Home}/>
@@ -27,7 +27,7 @@ function App() {
           <Route path="*" component={NotFound}/>
           <Route path="/MiPerfil" component={MiPerfil} />
         </Switch>
-      <Footer />
+      <Footer/>
     </React.Fragment>
   );
 }
