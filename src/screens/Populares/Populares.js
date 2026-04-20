@@ -55,8 +55,7 @@ class Populares extends Component {
                 {/*lista pelis*/}
                 <div className="row cards">
                     {this.state.peliculas
-                    .filter(peli => peli.title.toLowerCase() === filtro.toLowerCase())
-                        /*no funciona buscar pelis parecida es como buscador*/
+                    .filter(peli => peli.title.toLowerCase().includes(filtro.toLowerCase()))
                     .map(peli => (
                         <CardPeli
                             key={peli.id}
