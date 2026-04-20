@@ -39,7 +39,7 @@ class CardPeli extends Component {
                 
                     <button className="btn alert-primary" onClick={() => this.boton()}>{this.state.ver}</button>
 
-		            <Link to={"/detalle/" + this.props.pelicula.id}>
+		            <Link to={"/detalle/"+ this.props.pelicula.id}>  
                         <button>Ir a detalle</button>
                     </Link>
                 </div>

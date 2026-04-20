@@ -19,12 +19,12 @@ return(
                 </li>
                 {hayCookie ? (
                     <li>
-                  <Link to="Favoritos" className="nav-link">Favoritos</Link>
+                  <Link to="/Favoritos" className="nav-link">Favoritos</Link>
                 </li>
                 ) : (
                   <React.Fragment>
                     <li className="nav-item">
-                    <Link to="/login" className="nav-link">Login</Link>
+                    <Link to="/Login" className="nav-link">Login</Link>
                     </li>
 
                     <li className="nav-item">

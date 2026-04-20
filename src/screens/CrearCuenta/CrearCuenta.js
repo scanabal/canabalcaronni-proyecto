@@ -13,20 +13,24 @@ class CrearCuenta extends Component {
      evitarSubmit(e){
         e.preventDefault();
     
-    let users = JSON.parse(localStorage.getItem("savedUsers"))
-    let existeUser= users.filter(user => user.email === this.state.email) //puedo poner filter?
+    let users = JSON.parse(localStorage.getItem("savedUsers"))  
+    if (users === null) {
+     users = []
+    }
+    let existeUser= users.filter(user => user.email === this.state.email) 
 
-    if(existeUser) { this.setState({error:"Este mail ya esta en uso"}) }
+    if(existeUser.length>0) { this.setState({error:"Este mail ya esta en uso"}) }
     else if (this.state.password.length <6) {
       this.setState({error:"Tu password debe tener al menos 6 caracteres"})
     }
-      else { (users.push)({
+      else { users.push({
       email:this.state.email,
       password: this.state.password
     })
       }
     
     localStorage.setItem("savedUsers", JSON.stringify(users)),
+
     // Esto me deja dirigir al login
     this.props.history.push("/login")
   
