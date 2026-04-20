@@ -57,7 +57,7 @@ class Home extends Component{
                 </form>
 
             <h2>Peliculas mas populares</h2>
-            <Link to="/populares">Ver todas</Link>
+            <Link to="/Populares">Ver todas</Link>
 
             <div className="row cards">
             
@@ -71,7 +71,7 @@ class Home extends Component{
                         
  
             <h2>Peliculas en cartel</h2>
-            <Link to="/cartel">Ver todas</Link>
+            <Link to="/EnCartel">Ver todas</Link>
 
             <div className="row cards"> 
             {this.state.cartel

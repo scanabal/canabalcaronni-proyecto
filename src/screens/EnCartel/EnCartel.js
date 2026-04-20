@@ -33,12 +33,6 @@ class EnCartel extends Component {
                 
                 data.results.map(peli => pelisArray.push(peli));
 
-                /*creo nuevo array o reemplazo el del state?
-                let pelisArray = [];
-                
-                this.state.peliculas.map(peli => pelisArray.push(peli));
-                data.results.map(peli => pelisArray.push(peli));*/
-
                 this.setState({
                     peliculas: pelisArray,
                     pagina: nuevaPag

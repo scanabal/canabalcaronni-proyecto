@@ -11,6 +11,8 @@ import { Switch, Route } from "react-router-dom";
 import SearchResults from "./screens/SearchResults/SearchResults";
 import NotFound from "./screens/NotFound/NotFound";
 import MiPerfil from "./screens/MiPerfil/MiPerfil";
+import EnCartel from "./screens/EnCartel/EnCartel";
+import Populares from "./screens/Populares/Populares";
 
 function App() {
   return (
@@ -21,11 +23,14 @@ function App() {
           <Route path="/" exact={true}component={Home}/>
           <Route path="/Login" component={Login}/>
           <Route path="/CrearCuenta" component={CrearCuenta}/> 
-           <Route path="/Favoritos" component={Favoritos}/> 
-           <Route path="/search/:busqueda" component={SearchResults}/>
-           <Route path="/detalle/:id" component={Detalle}/> 
-          <Route path="*" component={NotFound}/>
+          <Route path="/Favoritos" component={Favoritos}/> 
+          <Route path="/search/:busqueda" component={SearchResults}/>
+          <Route path="/detalle/:id" component={Detalle}/> 
           <Route path="/MiPerfil" component={MiPerfil} />
+          <Route path="/EnCartel" component={EnCartel} />
+          <Route path="/Populares" component={Populares} />
+          <Route path="*" component={NotFound}/>
+
         </Switch>
       <Footer/>
     </React.Fragment>
