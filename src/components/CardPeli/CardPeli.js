@@ -10,7 +10,7 @@ class CardPeli extends Component {
         }
     }
 
-    boton = () => {
+    boton() {
         let resultado = this.state.ver === "Ver descripcion"
         ? {ver: "Ocultar descripcion",
             clase: "mostrar"

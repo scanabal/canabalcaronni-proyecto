@@ -10,7 +10,7 @@ class CardSeries extends Component {
         }
     }
 
-    boton() {
+    boton = () => {
         let resultado = this.state.ver === "Ver descripcion"
         ? {
             ver: "Ocultar descripcion",
@@ -25,38 +25,39 @@ class CardSeries extends Component {
     }
 
     render(){
+        const serie = this.props.serie;
+
         return(
             <React.Fragment>
                 <article className="single-card-movie">
 
                     <img
-                        src={`https://image.tmdb.org/t/p/w342${this.props.serie.profile_path}`}
-                        alt={this.props.serie.name}
+                        src={`https://image.tmdb.org/t/p/w342${serie.profile_path}`} alt={serie.name}
                     />
 
                     <div className="cardbody">
-
-                        <h2 className="class-title">
-                            {this.props.serie.name}
-                        </h2>
+                        <h2 className="class-title">{serie.name}</h2>
 
                         {this.state.clase === "mostrar"
-                        ? <p className="card-text">
-                            Nombre original: {this.props.serie.original_name}
-                          </p>
-                        : null
+                            ? <div>
+                                <p>Nombre original: {serie.original_name}</p>
+                                <p>Género: {serie.gender}</p>
+                              </div>
+                            : null
                         }
 
-                        <button
-                            className="btn alert-primary"
-                            onClick={() => this.boton()}
-                        >
+                        <button className="btn alert-primary" onClick={()=>this.boton()}>
                             {this.state.ver}
                         </button>
 
-                        <Link to={"/detalleSerie/" + this.props.serie.id}>
+                        <Link to={"/detalleSerie/" + serie.id}>
                             <button>Ir a detalle</button>
                         </Link>
+
+                        {this.props.haySesion
+                        ? <button>Agregar/Quitar favoritos</button>
+                        : null
+                        }
 
                     </div>
 
