@@ -59,8 +59,8 @@ class Home extends Component{
 
                 <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
                     <input type="text" placeholder="Buscar..." onChange={(evento)=> this.controlarCambios(evento)} value={this.state.valor}/>
-                    <button type= "button" onClick={()=> this.tipoPelicula()}>Buscar peliculas</button> 
-                    <button type= "button" onClick={()=> this.tipoSerie()}>Buscar series</button> 
+                    {/* <button type= "button" onClick={()=> this.tipoPelicula()}>Buscar peliculas</button> 
+                    <button type= "button" onClick={()=> this.tipoSerie()}>Buscar series</button>  */}
                 </form>
 
             <h2>Peliculas mas populares</h2>

@@ -7,84 +7,53 @@ class Favoritos extends Component{
     this.state={
         peliculasFavoritas: [],
         seriesFavoritas: [],
-        loading: true
-    }
-    }
-    componentDidMount(){
-        let peliculasSaved= localStorage.getItem('favPeliculas')
-        let favPeliculasParseadas = JSON.parse(peliculasSaved)
-
-        if(favPeliculasParseadas == null){
-            favPeliculasParseadas = [];
-        }
-
-        if(favPeliculasParseadas.length === 0){
-          this.setState({
-            
-             });
-            
-        return;
-    }
-
- let arrayPeliculas = [];
-    
- favPeliculasParseadas.map(pelicula => {
-        fetch("https://api.themoviedb.org/3/account/{account_id}/favorite/movies?api_key=57f7a2a82d57f08ae3dba76c4340b8c0",{
-            methos:"GET",
-            headers:{
-            accept: "application/json",
-            Authorization: "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTE0MmM2Y2E4ZmM3MTg2OTM0NDU1MDQ2ZGM3NjM2OSIsIm5iZiI6MTc3NDU1OTQ0Mi4xMzY5OTk4LCJzdWIiOiI2OWM1YTBkMmIwNjQ3OWNkYjQ0MjFiMGQiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.o5IT_ep0A_LgC8mJgaQmE9oW3CTTtgeN52AN9v8FlyE"
-            }
-        })
-       
-       
-        .then((response) => response.json())
-        .then((data) => {
-            arrayPeliculas.push(data);
-            this.setState({
-            peliculasFavoritas: arrayPeliculas,
-            loading: false
-        })
-         
-         });
-          
-         if (arrayPeliculas.length === favPeliculasParseadas){
-            this.setState({
-
-            });
-         }
-    })
-    .catch((error) => console.log(error));
-        };
-    
-    }
-
-    // render() {
-    //     if(this.state.loading){
-    //         return(
-    //             <h2>Cargando...</h2>
-    //         )
-    //     }
-    //     return(
-    //         <div>
-    //             <h1>Mis Favoritos</h1>
-    //             <section>
-    //                 {this.state.peliculasFavoritas.map(peli=>(
-    //                     <CardPeli key={peli.id} id={peli.id}
-    //                     />
-    //                 ))}
-    //             </section>
-    //         </div>
-    //     )
-    // }
-
-    
-
-    
         
+    }
+    }
+  
+
+   componentDidMount(){
+    // PELICULAS
+      let peliculasSaved= localStorage.getItem('peliculasFavoritas')
+      let peliculasFavoritasParseadas = peliculasSaved ? JSON.parse(peliculasSaved): []
+      // si hay algo guardado parsealo sino array vacio
+      let peliculasDetalle= []
+
+      peliculasFavoritasParseadas.map(id =>{
+        fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=57f7a2a82d57f08ae3dba76c4340b8c0`) })
+         .then(response => response.json())
+         .then(data => {
+            peliculasDetalle.push(data)
+            this.setState({
+                peliculasFavoritas: peliculasDetalle
+            }) 
+      
+       .catch((error) => console.log(error));
+        })
+
+      
+      //SERIES
+      let seriesSaved= localStorage.getItem('seriesFavoritas')
+      let seriessFavoritasParseadas = seriesSaved ? JSON.parse(seriesSaved): []
+      // si hay algo guardado parsealo sino array vacio
+
+       let seriesDetalle= []
+
+       seriesFavoritasParseadas.map(id =>{
+         fetch(`https://api.themoviedb.org/3/series/${id}?api_key=57f7a2a82d57f08ae3dba76c4340b8c0`) })
+          .then(response => response.json())
+          .then(data => {
+            seriesDetalle.push(data)
+            this.setState({
+                 seriesFavoritas: seriesDetalle
+             }) 
+      
+       .catch((error) => console.log(error));
+      })
         
-
+}
+}
     
     
 
-export default Favoritos
+export default Favoritos;
