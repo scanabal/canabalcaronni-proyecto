@@ -16,26 +16,31 @@ class Home extends Component{
         }
     }
 
-    tipoSerie(){
-        this.setState ({tipo: "tv"})
-    }
-
-    tipoPelicula(){
-        this.setState ({tipo: "movie"})
-    }
-
     controlarCambios(e){
         this.setState({
             valor: e.target.value});
     }
 
-    evitarSubmit(e){
+    tipoPelicula(){
+        this.setState({tipo: "movie"},
+            () => this.buscar());}
+        
+    tipoSerie(){
+        this.setState({tipo:"tv"},
+            () => this.buscar());} 
+        
+    buscarEnter(e){
         e.preventDefault();
+        this.buscar();
+    }
 
+    buscar(){
         if(this.state.valor !== "" && this.state.tipo !== ""){
             this.props.history.push("/search/" + this.state.tipo + "/" + this.state.valor)
         }
-    }
+        else{
+            alert("Elegí si querés buscar películas o series")
+    }}
 
     componentDidMount(){
         fetch("https://api.themoviedb.org/3/movie/popular?api_key=57f7a2a82d57f08ae3dba76c4340b8c0")
@@ -57,10 +62,10 @@ class Home extends Component{
         return(
             <React.Fragment>
 
-                <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
-                    <input type="text" placeholder="Buscar..." onChange={(evento)=> this.controlarCambios(evento)} value={this.state.valor}/>
-                    {/* <button type= "button" onClick={()=> this.tipoPelicula()}>Buscar peliculas</button> 
-                    <button type= "button" onClick={()=> this.tipoSerie()}>Buscar series</button>  */}
+                <form onSubmit={(e)=> this.buscarEnter(e)}>
+                    <input type="text" placeholder="Buscar..." onChange={(e)=> this.controlarCambios(e)} value={this.state.valor}/>
+                    <button onClick={()=> this.tipoPelicula()}>Buscar peliculas</button> 
+                    <button onClick={()=> this.tipoSerie()}>Buscar series</button>
                 </form>
 
             <h2>Peliculas mas populares</h2>
@@ -97,4 +102,3 @@ class Home extends Component{
 
 }
 export default withRouter(Home)
-
