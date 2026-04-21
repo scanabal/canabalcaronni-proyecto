@@ -1,69 +1,101 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
+import CardPeli from "../../components/CardPeli/CardPeli";
+import Cookies from 'universal-cookie';
+const cookies = new Cookies();
 
-class CardSeries extends Component {
+class Home extends Component{
     constructor(props){
-        super(props);
+        super(props)
         this.state = {
-            ver: "Ver descripcion",
-            clase: "no-mostrar"
+            valor: "",
+            populares: [],
+            cartel: [],
+            tipo: "",
+            haySesion: false          
         }
     }
 
-    boton() {
-        let resultado = this.state.ver === "Ver descripcion"
-        ? {
-            ver: "Ocultar descripcion",
-            clase: "mostrar"
-        }
-        : {
-            ver: "Ver descripcion",
-            clase: "no-mostrar"
-        };
+    tipoSerie(){
+        this.setState ({tipo: "tv"})
+    }
 
-        this.setState(resultado);
+    tipoPelicula(){
+        this.setState ({tipo: "movie"})
+    }
+
+    controlarCambios(e){
+        this.setState({
+            valor: e.target.value});
+    }
+
+    evitarSubmit(e){
+        e.preventDefault();
+
+        if(this.state.valor !== "" && this.state.tipo !== ""){
+            this.props.history.push("/search/" + this.state.tipo + "/" + this.state.valor)
+        }
+    }
+
+    componentDidMount(){
+        fetch("https://api.themoviedb.org/3/movie/popular?api_key=57f7a2a82d57f08ae3dba76c4340b8c0")
+            .then(response => response.json())
+            .then(data => this.setState({populares: data.results}))
+            .catch(error => console.log(error))
+
+        fetch("https://api.themoviedb.org/3/movie/now_playing?api_key=57f7a2a82d57f08ae3dba76c4340b8c0")
+            .then(response => response.json())
+            .then(data => this.setState({cartel: data.results}))
+            .catch(error => console.log(error))
+
+            if(cookies.get('auth-user')){
+                this.setState({haySesion: true})
+        }
     }
 
     render(){
         return(
             <React.Fragment>
-                <article className="single-card-movie">
 
-                    <img
-                        src={`https://image.tmdb.org/t/p/w342${this.props.serie.profile_path}`}
-                        alt={this.props.serie.name}
-                    />
+                <form onSubmit={(evento)=> this.evitarSubmit(evento)}>
+                    <input type="text" placeholder="Buscar..." onChange={(evento)=> this.controlarCambios(evento)} value={this.state.valor}/>
+                    <button type= "button" onClick={()=> this.tipoPelicula()}>Buscar peliculas</button> 
+                    <button type= "button" onClick={()=> this.tipoSerie()}>Buscar series</button> 
+                    {/* <button type= "button" onClick={()=> this.tipoPelicula()}>Buscar peliculas</button> 
+                    <button type= "button" onClick={()=> this.tipoSerie()}>Buscar series</button>  */}
+                </form>
 
-                    <div className="cardbody">
+            <h2>Peliculas mas populares</h2>
+            <Link to="/Populares">Ver todas</Link>
 
-                        <h2 className="class-title">
-                            {this.props.serie.name}
-                        </h2>
+            <div className="row cards">
 
-                        {this.state.clase === "mostrar"
-                        ? <p className="card-text">
-                            Nombre original: {this.props.serie.original_name}
-                          </p>
-                        : null
-                        }
+            {this.state.populares
+                .filter((peli, idx) => idx < 4)
+                .map((peli) => 
+            <CardPeli 
+                key={peli.id}
+                pelicula={peli}
+                haySesion={this.state.haySesion}/>)} 
+            </div>           
 
-                        <button
-                            className="btn alert-primary"
-                            onClick={() => this.boton()}
-                        >
-                            {this.state.ver}
-                        </button>
 
-                        <Link to={"/detalleSerie/" + this.props.serie.id}>
-                            <button>Ir a detalle</button>
-                        </Link>
+            <h2>Peliculas en cartel</h2>
+            <Link to="/EnCartel">Ver todas</Link>
 
-                    </div>
+            <div className="row cards"> 
+            {this.state.cartel
+                .filter((peli, idx) => idx < 4)
+                .map((peli) => (
+            <CardPeli 
+                key={peli.id}
+                pelicula={peli}
+                haySesion={this.state.haySesion}/>))}
+                </div>
 
-                </article>
-            </React.Fragment>
+        </React.Fragment>
         )
     }
-}
 
-export default CardSeries;
+}
+export default withRouter(Home)

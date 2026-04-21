@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import CardPeli from "../../components/CardPeli/CardPeli";
+import CardSeries from "../../components/CardSeries/CardSeries";
 
 class Favoritos extends Component{
     constructor(props){
@@ -34,7 +35,7 @@ class Favoritos extends Component{
       
       //SERIES
       let seriesSaved= localStorage.getItem('seriesFavoritas')
-      let seriessFavoritasParseadas = seriesSaved ? JSON.parse(seriesSaved): []
+      let seriesFavoritasParseadas = seriesSaved ? JSON.parse(seriesSaved): []
       // si hay algo guardado parsealo sino array vacio
 
        let seriesDetalle= []
@@ -91,13 +92,7 @@ class Favoritos extends Component{
       <section className="PeliculasFav">
         {this.state.peliculasFavoritas.map((pelicula, idx) => (
           <section className="cardFav">
-                                <CardPeli
-                                    key={idx}
-                                    id={pelicula.id}
-                                    img={pelicula.poster_path}
-                                    title={pelicula.original_title}
-                                    overview={pelicula.overview}
-                                />
+                                <CardPeli pelicula={pelicula}/>
 
               <button onClick={() => this.eliminarPelicula(pelicula.id)} className="eliminar">
               Eliminar
@@ -116,13 +111,7 @@ class Favoritos extends Component{
        <section className="SeriesFav">
          {this.state.seriesFavoritas.map((serie, idx) => (
            <section className="cardFav">
-                                 <CardSerie
-                                     key={idx}
-                                     id={serie.id}
-                                     img={serie.poster_path}
-                                     title={serie.original_name}
-                                     overview={serie.overview}
-                                 />
+                                 <CardSeries serie={serie}/>
 
              <button onClick={() => this.eliminarSerie(serie.id)} className="eliminar">
                Eliminar
